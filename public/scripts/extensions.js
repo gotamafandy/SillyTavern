@@ -410,6 +410,7 @@ async function connectToApi(baseUrl) {
 
         if (getExtensionsResult.ok) {
             const data = await getExtensionsResult.json();
+            
             modules = data.modules;
             await activateExtensions();
             eventSource.emit(event_types.EXTRAS_CONNECTED, modules);
