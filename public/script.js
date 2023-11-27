@@ -3564,7 +3564,42 @@ async function Generate(type, { automatic_trigger, force_name2, resolve, reject,
                 }
             }
             else if (main_api == 'textgenerationwebui') {
-                generate_data = getTextGenGenerationData(finalPrompt, maxLength, isImpersonate, isContinue, cfgValues);
+                const lastUserChat = chat.findLast((e) => e.name === name1 && e.is_user);
+
+                const promptInfo = {
+                    user_message: lastUserChat,
+                    all_anchors: allAnchors,
+                    summarize: (extension_prompts['1_memory']?.value || ''),
+                    authors_note: (extension_prompts['2_floating_prompt']?.value || ''),
+                    smart_context: (extension_prompts['chromadb']?.value || ''),
+                    world_info: worldInfoString,
+                    story: storyString,
+                    examples: examplesString,
+                    mesSend: mesSendString,
+                    generated_prompt_cache: generatedPromptCache,
+                    cid2: this_chid,
+                    name2: name2,
+                    name1: name1,
+                    char_description: description,
+                    char_personality: personality,
+                    scenario: scenario,
+                    world_info_before: worldInfoBefore,
+                    world_info_after: worldInfoAfter,
+                    max_context: this_max_context,
+                    padding: power_user.token_padding,
+                    bias: promptBias,
+                    type: type,
+                    quiet_prompt: quiet_prompt,
+                    cycle_prompt: cyclePrompt,
+                    system_prompt_override: system,
+                    jailbreak_prompt_override: jailbreak,
+                    persona_description: persona,
+                    instruction: isInstruct ? substituteParams(power_user.prefer_character_prompt && system ? system : power_user.instruct.system_prompt) : '',
+                    user_persona: (power_user.persona_description || ''),
+                }
+
+                generate_data = getTextGenGenerationData(finalPrompt, maxLength, isImpersonate, cfgValues, promptInfo);
+
             }
             else if (main_api == 'novel') {
                 const presetSettings = novelai_settings[novelai_setting_names[nai_settings.preset_settings_novel]];

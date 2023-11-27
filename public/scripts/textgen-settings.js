@@ -575,9 +575,11 @@ function getModel() {
     return undefined;
 }
 
-export function getTextGenGenerationData(finalPrompt, maxTokens, isImpersonate, isContinue, cfgValues) {
+<<<<<<< HEAD
+export function getTextGenGenerationData(finalPrompt, maxTokens, isImpersonate, isContinue, cfgValues, promptInfo) {
     let APIflags = {
         'prompt': finalPrompt,
+        'prompt_info': promptInfo,
         'model': getModel(),
         'max_new_tokens': maxTokens,
         'max_tokens': maxTokens,
