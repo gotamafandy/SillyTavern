@@ -575,7 +575,6 @@ function getModel() {
     return undefined;
 }
 
-<<<<<<< HEAD
 export function getTextGenGenerationData(finalPrompt, maxTokens, isImpersonate, isContinue, cfgValues, promptInfo) {
     let APIflags = {
         'prompt': finalPrompt,
@@ -640,6 +639,7 @@ export function getTextGenGenerationData(finalPrompt, maxTokens, isImpersonate, 
         //'logprobs': textgenerationwebui_settings.log_probs_aphrodite,
         //'prompt_logprobs': textgenerationwebui_settings.prompt_log_probs_aphrodite,
     }
+
     if (isAphrodite()) {
         APIflags = Object.assign(APIflags, aphroditeFlags);
     } else {

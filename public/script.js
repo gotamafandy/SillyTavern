@@ -2762,7 +2762,7 @@ export async function generateRaw(prompt, api, instructOverride) {
             generateData = getNovelGenerationData(prompt, novelSettings, amount_gen, false, false, null);
             break;
         case 'textgenerationwebui':
-            generateData = getTextGenGenerationData(prompt, amount_gen, false, false, null);
+            generateData = getTextGenGenerationData(prompt, amount_gen, false, false, null, null);
             break;
         case 'openai':
             generateData = [{ role: 'user', content: prompt.trim() }];
@@ -3598,8 +3598,7 @@ async function Generate(type, { automatic_trigger, force_name2, resolve, reject,
                     user_persona: (power_user.persona_description || ''),
                 }
 
-                generate_data = getTextGenGenerationData(finalPrompt, maxLength, isImpersonate, cfgValues, promptInfo);
-
+                generate_data = getTextGenGenerationData(finalPrompt, maxLength, isImpersonate, isContinue, cfgValues, promptInfo);
             }
             else if (main_api == 'novel') {
                 const presetSettings = novelai_settings[novelai_setting_names[nai_settings.preset_settings_novel]];
