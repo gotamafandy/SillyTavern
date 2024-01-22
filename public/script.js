@@ -3565,12 +3565,12 @@ async function Generate(type, { automatic_trigger, force_name2, resolve, reject,
             }
             else if (main_api == 'textgenerationwebui') {
                 const lastUserChat = chat.findLast((e) => e.name === name1 && e.is_user);
-
+                
                 const promptInfo = {
                     user_message: lastUserChat,
                     all_anchors: allAnchors,
                     summarize: (extension_prompts['1_memory']?.value || ''),
-                    authors_note: (extension_prompts['2_floating_prompt']?.value || ''),
+                    authors_note: extension_prompts['2_floating_prompt'],
                     smart_context: (extension_prompts['chromadb']?.value || ''),
                     world_info: worldInfoString,
                     story: storyString,
